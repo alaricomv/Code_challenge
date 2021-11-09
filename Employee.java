@@ -1,7 +1,11 @@
+import java.util.Scanner;
+import java.time.format.DateTimeFormatter;  
+import java.time.LocalDateTime;    
+
 class Employee extends Person{
 
     public String start_date;
-    public boolean full;
+    public int full;
     public int hours;
     public String boss;
     public String job;
@@ -9,19 +13,51 @@ class Employee extends Person{
     public int salary;
     public boolean manager;
 
-    //Constructor referencing Person
-    public Employee(String name, String address, int age, String phone, String start_date,
-                    int hours, String boss, String job, String project, int salary, boolean full, boolean manager){
 
-        super(name,address,age,phone);
-        this.start_date = start_date;
-        this.hours = hours;
-        this.boss = boss;
-        this.job = job;
-        this.project = project;
-        this.salary = salary;
-        this.manager = manager;
-        this.full = full;
+
+    public void AddEmployee(){
+
+        Scanner myscanner = new Scanner(System.in);
+
+        System.out.println("Enter Full Name");
+        String name = myscanner.nextLine();
+        System.out.println("Enter Address");
+        String address = myscanner.nextLine();
+        System.out.println("Enter Age");
+        int age = myscanner.nextInt();
+        System.out.println("Enter Phone");
+        String phone = myscanner.nextLine();
+
+        CreatePerson(name,address,age,phone);
+
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        LocalDateTime now = LocalDateTime.now();  
+        this.start_date = (dtf.format(now));
+        this.hours = 0;
+
+        System.out.println("Enter Manager name");
+        this.boss = myscanner.nextLine();
+        System.out.println("Enter Job Position");
+        this.job = myscanner.nextLine();
+        System.out.println("Enter Project name");
+        this.project = myscanner.nextLine();
+        System.out.println("Enter Salary");
+        this.salary = myscanner.nextInt();
+        System.out.println("Is the employee a manager? Y/N");
+        if(myscanner.nextLine().equals('Y')){
+            this.manager = true;
+        }
+        else{
+            this.manager = false;
+        }
+        System.out.println("Is this a full time job? Y/N");
+        if(myscanner.nextLine().equals("Y")){
+            this.full = 2;
+        }
+        else{
+            this.full += 1;
+        }
+        
     }
 
     //Adding work hours

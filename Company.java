@@ -7,7 +7,8 @@ class Company{
     public String country;
     public ArrayList<String> employees = new ArrayList<String>();
 
-    public Company(String company_name, String company_address, String country, ArrayList<String> employees){
+
+    public void AddCompany(String company_name, String company_address, String country, ArrayList<String> employees){
         this.company_name = company_name;
         this.company_address = company_address;
         this.country = country;

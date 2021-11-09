@@ -18,25 +18,28 @@ class Main {
         names.add("Alarico Mercado");
         names.add("Fernanda Montiel");
 
-
         while(!exit){
-            System.out.println("Elija accion");
+            System.out.println("Choose action" + "\n" 
+                               + "1) Add company " + "\n"
+                               + "2) Add employee" + "\n"
+                               + "3) Exit ");
             main_menu= myscanner.nextInt();
 
 
             switch(main_menu){
                 case 1:
-                       Employee employee = new Employee("Alarico Mercado","Vista Magna 1443",23,"5518294302",
-                                         "18/01/19", 500, "Roberto Perez", "Developer", "Cloud", 30000,true,false);
-                       employee.info();
-                       break;
-                case 2: 
-                        Company company = new Company("Oracle","Guadiana 155","GUadalajara", names);
+                       Company company = new Company();
+                        company.AddCompany("Oracle","Guadiana 155","Guadalajara", names);
                         company.Company_info();
                         break;
+                case 2: 
+                       Employee employee = new Employee();
+                       
+                       employee.AddEmployee();
+                       employee.info();
+                       break;
 
                 case 3:
-                        
                         exit = true;
                         break;
 

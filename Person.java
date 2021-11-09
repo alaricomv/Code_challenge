@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 class Person{
 
     public String name;
@@ -6,7 +8,7 @@ class Person{
     public String phone;
 
     //Constructor
-    public Person(String name, String address, int age, String phone){
+    public void CreatePerson(String name, String address, int age, String phone){
         this.name = name;
         this.address = address;
         this.age = age;
