@@ -9,6 +9,7 @@ class Company{
     public ArrayList<ArrayList<String>> employees = new ArrayList<ArrayList<String>>();
 
 
+    //Adds a company
     public void AddCompany(){
         Scanner myscanner = new Scanner(System.in);
 
@@ -20,10 +21,25 @@ class Company{
         this.country.add(myscanner.nextLine());
     }
 
+    //Finds if the company is registered
+    public boolean find(String search){
+        boolean company_found = false;
+        for(int i = 0; i< company_name.size();i++){
+            System.out.println(company_name.get(i));
+            if(company_name.get(i).equalsIgnoreCase(search)){
+                company_found = true;
+            }
+        }
+
+        return company_found;
+
+    }
+
+    //Finds the info of an specific company
     public void Company_info(String search){
         int index = -1;
         for(int i = 0; i< company_name.size();i++){
-            if(company_name.get(i).equals(search)){
+            if(company_name.get(i).equalsIgnoreCase(search)){
                 index = i;
             }
         }

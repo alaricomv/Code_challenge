@@ -16,17 +16,18 @@ class Employee extends Person{
     public ArrayList<Integer> salary = new ArrayList<Integer>();
     public ArrayList<Boolean> manager = new ArrayList<Boolean>();
 
+    public Employee(){
+       
+    }
 
 
-    public void AddEmployee(){
 
+    public void AddEmployee(String company_name){
         Scanner myscanner = new Scanner(System.in);
 
         
-        System.out.println("Enter Company name");
-        this.company.add(myscanner.nextLine());
-
-
+        
+        this.company.add(company_name);
 
         System.out.println("Enter Full Name");
         String name = myscanner.nextLine();
@@ -89,9 +90,6 @@ class Employee extends Person{
             int original = hours.get(index);
             hours.set(index, original+adding);
         }
-
-
-        
     }
 
     //Print all info

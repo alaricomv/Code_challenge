@@ -39,8 +39,22 @@ class Main {
                 case 1:
                         company.AddCompany();
                         break;
-                case 2: 
-                       employee.AddEmployee();
+                case 2:
+                        System.out.println("Enter Company name");
+                        myscanner.nextLine();
+                        String company_name = myscanner.nextLine();
+
+                        boolean prueba = company.find(company_name);
+
+                        System.out.println(prueba);
+                        
+                        if(company.find(company_name)){
+                            employee.AddEmployee(company_name);
+                        }
+                        else{
+                            System.out.println("Company not found");
+                        }
+                       
                        break;
                 case 3:
                        System.out.println("Enter full employee name");
