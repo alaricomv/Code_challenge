@@ -52,6 +52,7 @@ class Main {
 
                         if(company.find(company_name)){
                             employee.AddEmployee(company_name);
+                            company.AddEmployees(company_name,employee.name_enter);
                         }
                         else{
                             System.out.println("Company not found");

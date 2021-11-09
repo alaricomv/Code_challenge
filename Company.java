@@ -19,13 +19,24 @@ class Company{
         this.company_address.add(myscanner.nextLine());
         System.out.println("Enter Company Country");
         this.country.add(myscanner.nextLine());
+        ArrayList<String> inside = new ArrayList<String>();
+        this.employees.add(inside);
+    }
+
+    public void AddEmployees(String company_find, String employee_name){
+        int index = -1;
+        for(int i = 0; i< company_name.size();i++){
+            if(company_name.get(i).equalsIgnoreCase(company_find)){
+                index = i;
+            }
+        }
+        employees.get(index).add(employee_name);
     }
 
     //Finds if the company is registered
     public boolean find(String search){
         boolean company_found = false;
         for(int i = 0; i< company_name.size();i++){
-            System.out.println(company_name.get(i));
             if(company_name.get(i).equalsIgnoreCase(search)){
                 company_found = true;
             }
@@ -55,8 +66,11 @@ class Company{
 
 
                 for (int i = 0; i < employees.size(); i++) {
-                    for(int j = 0; i < employees.get(i).size(); j++){
-                        System.out.println((employees.get(i)).get(j));
+                    for(int j = 0; j < employees.get(i).size(); j++){
+                        if(i == index){
+                            System.out.println((employees.get(i)).get(j));
+                        }
+                        
                     }
                 }
 

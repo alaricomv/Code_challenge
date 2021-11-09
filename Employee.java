@@ -25,6 +25,7 @@ class Employee extends Person{
     public String company_one;
     public int salary_one;
     public boolean manager_one;
+    public String name_enter;
 
     public Employee(){
        
@@ -40,7 +41,7 @@ class Employee extends Person{
         this.company.add(company_name);
 
         System.out.println("Enter Full Name");
-        String name_enter = myscanner.nextLine();
+        name_enter = myscanner.nextLine();
         System.out.println("Enter Address");
         String address_enter = myscanner.nextLine();
         System.out.println("Enter Age");
