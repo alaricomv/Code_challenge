@@ -12,6 +12,7 @@ class Employee extends Person{
     public ArrayList<String> boss = new ArrayList<String>();
     public ArrayList<String> job = new ArrayList<String>();
     public ArrayList<String> project = new ArrayList<String>();
+    public ArrayList<String> company = new ArrayList<String>();
     public ArrayList<Integer> salary = new ArrayList<Integer>();
     public ArrayList<Boolean> manager = new ArrayList<Boolean>();
 
@@ -20,6 +21,12 @@ class Employee extends Person{
     public void AddEmployee(){
 
         Scanner myscanner = new Scanner(System.in);
+
+        
+        System.out.println("Enter Company name");
+        this.company.add(myscanner.nextLine());
+
+
 
         System.out.println("Enter Full Name");
         String name = myscanner.nextLine();
@@ -37,6 +44,8 @@ class Employee extends Person{
         LocalDateTime now = LocalDateTime.now();  
         this.start_date.add(dtf.format(now));
         this.hours.add(0);
+
+        
 
         System.out.println("Enter Manager name");
         this.boss.add(myscanner.nextLine());
@@ -74,7 +83,7 @@ class Employee extends Person{
         }
 
         if(index == -1){
-            System.out.println("Usuario no encontrado");
+            System.out.println("User not found");
         }
         else{
             int original = hours.get(index);
@@ -96,7 +105,7 @@ class Employee extends Person{
         }
 
         if(index == -1){
-            System.out.println("Usuario no encontrado");
+            System.out.println("User not found");
         }
         else{
         System.out.println("Full name: " + name.get(index) + "\n"
