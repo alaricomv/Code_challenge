@@ -2,25 +2,26 @@ import java.util.ArrayList;
 
 class Person{
 
-    public String name;
-    public String address;
-    public int age;
-    public String phone;
+    public ArrayList<String> name = new ArrayList<String>();
+    public ArrayList<String> address = new ArrayList<String>();
+    public ArrayList<Integer> age = new ArrayList<Integer>();
+    public ArrayList<String> phone = new ArrayList<String>();
 
     //Constructor
     public void CreatePerson(String name, String address, int age, String phone){
-        this.name = name;
-        this.address = address;
-        this.age = age;
-        this.phone = phone;
+        this.name.add(name);
+        this.address.add(address);
+        this.age.add(age);
+        this.phone.add(phone);
     }
 
-    //Print all info
+    /*
     public void info(){
         System.out.println("Full name: " + name + "\n"
                 + "Address: " +address+ "\n"
                 + "Age: " +age + "\n" 
                 + "Phone: " +phone + "\n");
     }
+    */
 
 }

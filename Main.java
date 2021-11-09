@@ -6,12 +6,19 @@ class Main {
 
 
 
+
         int main_menu;
         boolean exit = false;
+        String search; 
 
 
 
         Scanner myscanner = new Scanner(System.in);
+
+        Employee employee = new Employee();
+        Company company = new Company();
+
+
 
         ArrayList<String> names = new ArrayList<>();
 
@@ -28,18 +35,22 @@ class Main {
 
             switch(main_menu){
                 case 1:
-                       Company company = new Company();
                         company.AddCompany("Oracle","Guadiana 155","Guadalajara", names);
                         company.Company_info();
                         break;
                 case 2: 
-                       Employee employee = new Employee();
                        
                        employee.AddEmployee();
-                       employee.info();
+                       
+                       break;
+                case 3:
+                       System.out.println("Enter full employee name");
+                       myscanner.nextLine();
+                       search = myscanner.nextLine();
+                       employee.info(search);
                        break;
 
-                case 3:
+                case 4:
                         exit = true;
                         break;
 

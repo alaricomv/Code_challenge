@@ -9,10 +9,12 @@ class Company{
 
 
     public void AddCompany(String company_name, String company_address, String country, ArrayList<String> employees){
+        System.out.println("Enter Company Name");
         this.company_name = company_name;
+        System.out.println("Enter Company Address");
         this.company_address = company_address;
+        System.out.println("Enter Company Country");
         this.country = country;
-        this.employees = employees;
     }
 
     public void Company_info(){
