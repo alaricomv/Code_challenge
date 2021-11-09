@@ -10,6 +10,7 @@ class Main {
         int main_menu;
         boolean exit = false;
         String search; 
+        String company_search;
 
 
 
@@ -40,6 +41,7 @@ class Main {
                         company.AddCompany();
                         break;
                 case 2:
+                        //Verifies that the company exists before entering an employee
                         System.out.println("Enter Company name");
                         myscanner.nextLine();
                         String company_name = myscanner.nextLine();
@@ -47,7 +49,7 @@ class Main {
                         boolean prueba = company.find(company_name);
 
                         System.out.println(prueba);
-                        
+
                         if(company.find(company_name)){
                             employee.AddEmployee(company_name);
                         }
@@ -60,7 +62,9 @@ class Main {
                        System.out.println("Enter full employee name");
                        myscanner.nextLine();
                        search = myscanner.nextLine();
-                       employee.info(search);
+                       System.out.println("Enter company name");
+                       company_search = myscanner.nextLine();
+                       employee.info(search,company_search);
                        break;
 
                 case 4:

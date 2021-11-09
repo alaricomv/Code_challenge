@@ -16,6 +16,16 @@ class Employee extends Person{
     public ArrayList<Integer> salary = new ArrayList<Integer>();
     public ArrayList<Boolean> manager = new ArrayList<Boolean>();
 
+    public String start_date_one;
+    public int full_one;
+    public int hours_one;
+    public String boss_one;
+    public String job_one;
+    public String project_one;
+    public String company_one;
+    public int salary_one;
+    public boolean manager_one;
+
     public Employee(){
        
     }
@@ -30,55 +40,85 @@ class Employee extends Person{
         this.company.add(company_name);
 
         System.out.println("Enter Full Name");
-        String name = myscanner.nextLine();
+        String name_enter = myscanner.nextLine();
         System.out.println("Enter Address");
-        String address = myscanner.nextLine();
+        String address_enter = myscanner.nextLine();
         System.out.println("Enter Age");
-        int age = myscanner.nextInt();
+        int age_enter = myscanner.nextInt();
         System.out.println("Enter Phone");
         myscanner.nextLine();
-        String phone = myscanner.nextLine();
+        String phone_enter = myscanner.nextLine();
 
-        CreatePerson(name,address,age,phone);
-
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
-        LocalDateTime now = LocalDateTime.now();  
-        this.start_date.add(dtf.format(now));
-        this.hours.add(0);
+        
 
         
 
         System.out.println("Enter Manager name");
-        this.boss.add(myscanner.nextLine());
+        this.boss_one = myscanner.nextLine();
+        
         System.out.println("Enter Job Position");
-        this.job.add(myscanner.nextLine());
+        this.job_one = myscanner.nextLine();
+        
         System.out.println("Enter Project name");
-        this.project.add(myscanner.nextLine());
+        this.project_one = myscanner.nextLine();
+        
         System.out.println("Enter Salary");
-        this.salary.add(myscanner.nextInt());
-        System.out.println("Is the employee a manager? Y/N");
+        this.salary_one = myscanner.nextInt();
+        
+
         myscanner.nextLine();
-        if(myscanner.nextLine().equals('Y')){
+        System.out.println("Is this a full time job? Y/N");
+        if(myscanner.nextLine().equalsIgnoreCase("Y")){
+            if(counthoursfull(name_enter)){
+                this.full.add(2);
+            }
+            else{
+                System.out.println("Cannot apply to this position");
+                return;
+            }
+            
+        }
+        else{
+            if(counthourshalf(name_enter)){
+                this.full.add(1);
+            }
+            else{
+                System.out.println("Cannot apply to this position");
+                return;
+            }
+            
+        }
+
+        System.out.println("Is the employee a manager? Y/N");
+        if(myscanner.nextLine().equalsIgnoreCase("Y")){
             this.manager.add(true);
         }
         else{
             this.manager.add(false);
         }
-        System.out.println("Is this a full time job? Y/N");
-        if(myscanner.nextLine().equals("Y")){
-            this.full.add(2);
-        }
-        else{
-            this.full.add(1);
-        }
-        
+
+
+        CreatePerson(name_enter,address_enter,age_enter,phone_enter);
+
+        this.boss.add(boss_one);
+        this.job.add(job_one);
+        this.project.add(project_one);
+        this.salary.add(salary_one);
+
+
+
+
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        LocalDateTime now = LocalDateTime.now();  
+        this.start_date.add(dtf.format(now));
+        this.hours.add(0);
     }
 
     //Adding work hours
     public void addhours(int adding, String search){
         int index = -1;
         for(int i = 0; i< name.size();i++){
-            if(name.get(i).equals(search)){
+            if(name.get(i).equalsIgnoreCase(search)){
                 index = i;
             }
         }
@@ -92,12 +132,51 @@ class Employee extends Person{
         }
     }
 
+    //Find out if the employee can have a full time job
+    public boolean counthoursfull(String name_count){
+        int index = -1;
+        for(int i = 0; i< name.size();i++){
+            if(name.get(i).equalsIgnoreCase(name_count)){
+                index = i;
+            }
+        }
+        if(index == -1){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    //Find out if the employee can have a half time job
+    public boolean counthourshalf(String name_count){
+        int index = -1;
+        int cont = 0;
+        for(int i = 0; i< name.size();i++){
+            if(name.get(i).equalsIgnoreCase(name_count)){
+                index = i;
+                cont+=full.get(i);
+            }
+        }
+        if(index == -1){
+            return true;
+        }
+        else{
+            if(cont == 1){
+                return true;
+            }
+            else{
+                return false;
+            } 
+        }
+    }
+
     //Print all info
-    public void info(String search){
+    public void info(String search, String company_search){
 
         int index = -1;
         for(int i = 0; i< name.size();i++){
-            if(name.get(i).equals(search)){
+            if(name.get(i).equalsIgnoreCase(search) && company.get(i).equalsIgnoreCase(company_search)){
                 index = i;
             }
         }
@@ -110,6 +189,7 @@ class Employee extends Person{
                 + "Address: " +address.get(index)+ "\n"
                 + "Age: " + age.get(index) + "\n" 
                 + "Phone: " + phone.get(index) + "\n"
+                + "Company: " +company.get(index)+ "\n"
                 + "Start Date: " + start_date.get(index) + "\n"
                 + "Total Hours: " +hours.get(index)+ "\n"
                 + "Boss: " +boss.get(index) + "\n" 
