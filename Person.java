@@ -21,6 +21,4 @@ class Person{
                 + "Phone: " +phone + "\n");
     }
 
-    
-
 }
