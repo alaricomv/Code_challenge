@@ -234,6 +234,10 @@ class Employee extends Person{
                    System.out.println("Enter Manager name");
                     myscanner.nextLine();
                     new_value_str = myscanner.nextLine();
+                    if(manager.get(index)){
+                        System.out.println("Manager of manager is the CEO")
+                        break;
+                    }
                     if(Managerexists(new_value_str)){
                         boss.set(index,new_value_str);
                         break;
