@@ -34,9 +34,8 @@ class Main {
                                + "4) Search a Company" + "\n"
                                + "5) Delete a Company" + "\n"
                                + "6) Delete an Employee" + "\n"
-                               + "7) Edit a Company" + "\n"
-                               + "8) Edit an Employee" + "\n"
-                               + "9) Exit ");
+                               + "7) Edit an Employee" + "\n"
+                               + "8) Exit ");
             main_menu= myscanner.nextInt();
 
 
@@ -95,8 +94,14 @@ class Main {
                        employee.Deleteemployee(search,company_search);
                        
                        break;
+                case 7:
+                       System.out.println("Enter full employee name");
+                       myscanner.nextLine();
+                       search = myscanner.nextLine();
+                       employee.Editmenu(search);
+                       break;
 
-                case 9:
+                case 8:
                         exit = true;
                         break;
 

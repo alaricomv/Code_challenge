@@ -170,6 +170,160 @@ class Employee extends Person{
         }
     }
 
+    //Edit menu
+    public void Editmenu(String search){
+
+        Scanner myscanner = new Scanner(System.in);
+        boolean exit = false;
+        String new_value_str;
+        int new_value_int;
+        int main_menu;
+
+        int index = -1;
+        for(int i = 0; i< name.size();i++){
+            if(name.get(i).equalsIgnoreCase(search)){
+                index = i;
+            }
+        }
+
+
+        if(index == -1){
+            System.out.println("User not found");
+            return;
+        }
+
+        while(!exit){
+            System.out.println("Choose action" + "\n" 
+                               + "1) Edit address " + "\n"
+                               + "2) Edit Age" + "\n"
+                               + "3) Edit Phone" + "\n"
+                               + "4) Add Hours" + "\n"
+                               + "5) Change Manager" + "\n"
+                               + "6) Edit Job" + "\n"
+                               + "7) Change project" + "\n"
+                               + "8) Change Salary" + "\n"
+                               + "9) Exit ");
+            main_menu= myscanner.nextInt();
+
+            switch(main_menu){
+
+                  case 1:
+                   System.out.println("Enter new address");
+                   myscanner.nextLine();
+                   new_value_str = myscanner.nextLine();
+                   address.set(index, new_value_str);
+                   break;
+            
+            case 2:
+                   System.out.println("Enter new age");
+                   new_value_int = myscanner.nextInt();
+                   age.set(index, new_value_int);
+                   break;
+            case 3:
+                   System.out.println("Enter new number");
+                   myscanner.nextLine();
+                   new_value_str = myscanner.nextLine();
+                   phone.set(index, new_value_str);
+                   break;
+            case 4:
+                   System.out.println("Hours to add");
+                   new_value_int = myscanner.nextInt();
+                   addhours(new_value_int,search);
+                   break;
+            case 5:
+                   System.out.println("Enter Manager name");
+                    myscanner.nextLine();
+                    new_value_str = myscanner.nextLine();
+                    if(Managerexists(new_value_str)){
+                        boss.set(index,new_value_str);
+                        break;
+                    }
+                    else{
+                        System.out.println("Manager not found");
+                        break;
+                    }
+            case 6:
+                   System.out.println("Enter new job");
+                   myscanner.nextLine();
+                   new_value_str = myscanner.nextLine();
+                   job.set(index, new_value_str);
+                   break;
+            case 7:
+                   if(manager.get(index)== false){
+                       myscanner.nextLine();
+                       new_value_str = myscanner.nextLine();
+                       job.set(index, new_value_str);
+                       break;
+                   }
+                   else{
+                       managingprojects(index);
+                       break;
+                   }
+            case 8:
+                   System.out.println("Enter new salary");
+                   new_value_int = myscanner.nextInt();
+                   salary.set(index, new_value_int);
+                   break;
+            case 9:
+                  exit = true;
+                  break;
+                  
+
+            default :   
+                   System.out.print("Select a valid option");
+                   break;
+            
+            }
+                   
+        }
+
+        return;
+        
+    }
+
+    //Project menu for Managers
+    public void managingprojects(int index){
+        Scanner myscanner = new Scanner(System.in);
+        boolean exit = false;
+        String new_value_str;
+        int main_menu;
+
+
+         while(!exit){
+            System.out.println("Choose action" + "\n" 
+                               + "1) New Project " + "\n"
+                               + "2) Delete Project" + "\n"
+                               + "3) Exit" + "\n");
+            main_menu= myscanner.nextInt();
+
+            switch(main_menu){
+            case 1:
+                   System.out.println("Enter name of new project");
+                   myscanner.nextLine();
+                   new_value_str = myscanner.nextLine();
+                   projects_managers.get(index).add(new_value_str);
+                   break;
+            case 2: 
+                   System.out.println("Enter name of project to delete");
+                   myscanner.nextLine();
+                   new_value_str = myscanner.nextLine();
+                   for (int i = 0; i < projects_managers.size(); i++) {
+                        for(int j = 0; j < projects_managers.get(i).size(); j++){
+                            if(i == index && projects_managers.get(i).get(j).equalsIgnoreCase(new_value_str)){
+                                projects_managers.get(i)).remove(j);
+                            }
+                        
+                         }
+                     }
+                     break;
+            case 3:
+                     exit = true;
+                     break;
+            }
+         }
+        
+    }
+
     //Find out if the employee can have a full time job
     public boolean counthoursfull(String name_count){
         int index = -1;

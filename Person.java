@@ -7,7 +7,6 @@ class Person{
     public ArrayList<Integer> age = new ArrayList<Integer>();
     public ArrayList<String> phone = new ArrayList<String>();
 
-    //Constructor
     public void CreatePerson(String name, String address, int age, String phone){
         this.name.add(name);
         this.address.add(address);
