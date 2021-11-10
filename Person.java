@@ -14,13 +14,4 @@ class Person{
         this.phone.add(phone);
     }
 
-    /*
-    public void info(){
-        System.out.println("Full name: " + name + "\n"
-                + "Address: " +address+ "\n"
-                + "Age: " +age + "\n" 
-                + "Phone: " +phone + "\n");
-    }
-    */
-
 }

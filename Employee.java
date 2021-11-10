@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.io.IOException;
 import java.io.FileWriter;
+import java.io.File;
+import java.io.FileNotFoundException; 
 
 
 class Employee extends Person{
@@ -44,8 +46,14 @@ class Employee extends Person{
 
         Scanner myscanner = new Scanner(System.in);
         
-        
-        this.company.add(company_name);
+        this.company_one = company_name;
+
+        if(hasmanager(company_name) == true){
+            first_manager = false;
+        }
+        else{
+            first_manager = true;
+        }
 
         System.out.println("Enter Full Name");
         name_enter = myscanner.nextLine();
@@ -77,7 +85,7 @@ class Employee extends Person{
         if(first_manager == false){
             System.out.println("Enter Manager name");
             this.boss_one = myscanner.nextLine();
-            if(Managerexists(boss_one)){
+            if(Managerexists(boss_one,company_name)){
             }
             else{
                 System.out.println("Manager not found");
@@ -160,6 +168,8 @@ class Employee extends Person{
 
         this.boss.add(boss_one);
         this.job.add(job_one);
+        this.company.add(company_one);
+
 
 
         ArrayList<String> inside = new ArrayList<String>();
@@ -178,6 +188,20 @@ class Employee extends Person{
         this.hours.add(0);
 
         return true;
+    }
+
+    public boolean hasmanager(String company_name){
+        if(company.isEmpty()){
+            return false; 
+        }
+        System.out.println(company.size());
+        for(int i = 0; i< company.size();i++){
+            if(company.get(i).equalsIgnoreCase(company_name) && manager.get(i) == true){
+                return true;
+            }
+        }
+
+        return false;
     }
 
     //Adding work hours
@@ -300,7 +324,7 @@ class Employee extends Person{
                         System.out.println("Manager of manager is the CEO");
                         break;
                     }
-                    if(Managerexists(new_value_str)){
+                    if(Managerexists(new_value_str,search_company)){
                         boss.set(index,new_value_str);
                         break;
                     }
@@ -422,10 +446,10 @@ class Employee extends Person{
     }
 
     //Checks if the manager in question exists and if they are actually a manager
-    public boolean Managerexists(String name_manager){
+    public boolean Managerexists(String name_manager, String company_name){
         int index = -1;
         for(int i = 0; i< name.size();i++){
-            if(name.get(i).equalsIgnoreCase(name_manager) && manager.get(i) == true){
+            if(name.get(i).equalsIgnoreCase(name_manager) && manager.get(i) == true && company.get(i).equalsIgnoreCase(company_name)){
                 index = i;
             }
         }
@@ -529,6 +553,262 @@ class Employee extends Person{
                 }
                 
         }
+    }
+
+    
+    public void loading(){
+         try {
+            File myObj = new File("employees.txt");
+            Scanner myReader = new Scanner(myObj);
+            String word = "";
+            
+
+            //Loads names
+            name.clear();
+            String data = myReader.nextLine();
+            for(int i = 1; i < data.length()-1; i++){
+                if(data.charAt(i)!= ','){
+                    word+=data.charAt(i);
+                }
+                else{
+                    name.add(word);
+                    word = "";
+                }
+            }
+
+            name.add(word);
+            word = "";
+
+
+
+            //Loads Company name
+            company.clear();
+            data = myReader.nextLine();
+            for(int i = 1; i < data.length()-1; i++){
+                if(data.charAt(i)!= ','){
+                    word+=data.charAt(i);
+                }
+                else{
+                    company.add(word);
+                    word = "";
+                }
+            }
+
+            company.add(word);
+            word = "";
+
+
+            //Loads Address
+            address.clear();
+            data = myReader.nextLine();
+            for(int i = 1; i < data.length()-1; i++){
+                if(data.charAt(i)!= ','){
+                    word+=data.charAt(i);
+                }
+                else{
+                    address.add(word);
+                    word = "";
+                }
+            }
+
+            address.add(word);
+            word = "";
+
+             
+            //Loads Age
+            age.clear();
+            data = myReader.nextLine();
+            for(int i = 1; i < data.length()-1; i++){
+                if(data.charAt(i)!= ','){
+                    word+=data.charAt(i);
+                }
+                else{
+                    age.add(Integer.parseInt(word));
+                    word = "";
+                }
+            }
+
+            age.add(Integer.parseInt(word));
+            word = "";
+
+
+            //Loads Phone
+            phone.clear();
+            data = myReader.nextLine();
+            for(int i = 1; i < data.length()-1; i++){
+                if(data.charAt(i)!= ','){
+                    word+=data.charAt(i);
+                }
+                else{
+                    phone.add(word);
+                    word = "";
+                }
+            }
+
+            phone.add(word);
+            word = "";
+
+            //Loads Start date
+            start_date.clear();
+            data = myReader.nextLine();
+            for(int i = 1; i < data.length()-1; i++){
+                if(data.charAt(i)!= ','){
+                    word+=data.charAt(i);
+                }
+                else{
+                    start_date.add(word);
+                    word = "";
+                }
+            }
+
+            start_date.add(word);
+            word = "";
+
+
+            //Loads if its full time or half
+            full.clear();
+            data = myReader.nextLine();
+            for(int i = 1; i < data.length()-1; i++){
+                if(data.charAt(i)!= ','){
+                    word+=data.charAt(i);
+                }
+                else{
+                    full.add(Integer.parseInt(word));
+                    word = "";
+                }
+            }
+
+            full.add(Integer.parseInt(word));
+            word = "";
+
+            //Loads total of hours
+            hours.clear();
+            data = myReader.nextLine();
+            for(int i = 1; i < data.length()-1; i++){
+                if(data.charAt(i)!= ','){
+                    word+=data.charAt(i);
+                }
+                else{
+                    hours.add(Integer.parseInt(word));
+                    word = "";
+                }
+            }
+
+            hours.add(Integer.parseInt(word));
+            word = "";
+
+
+            //Loads Manager
+            boss.clear();
+            data = myReader.nextLine();
+            for(int i = 1; i < data.length()-1; i++){
+                if(data.charAt(i)!= ','){
+                    word+=data.charAt(i);
+                }
+                else{
+                    boss.add(word);
+                    word = "";
+                }
+            }
+
+            boss.add(word);
+            word = "";
+
+
+            //Loads Job
+            job.clear();
+            data = myReader.nextLine();
+            for(int i = 1; i < data.length()-1; i++){
+                if(data.charAt(i)!= ','){
+                    word+=data.charAt(i);
+                }
+                else{
+                    job.add(word);
+                    word = "";
+                }
+            }
+
+            job.add(word);
+            word = "";
+
+
+
+
+            //Loads Projects
+            ArrayList<String> inside = new ArrayList<String>();
+            projects_managers.clear();
+            data = myReader.nextLine();
+            
+            for(int i = 1; i < data.length()-1; i++){
+                if(data.charAt(i) == '['){
+                     inside = new ArrayList<String>();
+                }
+                else if (data.charAt(i) == ']'){
+                    inside.add(word);
+                    word = "";
+                    projects_managers.add(inside);
+                }
+                else if (data.charAt(i) == ',') {
+                    inside.add(word);
+                    word = "";
+                }else{
+                    word+=data.charAt(i);
+                }
+            }
+
+
+            //Loads salary
+            salary.clear();
+            data = myReader.nextLine();
+            for(int i = 1; i < data.length()-1; i++){
+                if(data.charAt(i)!= ','){
+                    word+=data.charAt(i);
+                }
+                else{
+                    salary.add(Integer.parseInt(word));
+                    word = "";
+                }
+            }
+
+            salary.add(Integer.parseInt(word));
+            word = "";
+
+            //Loads if the person is a manager
+            manager.clear();
+            data = myReader.nextLine();
+            for(int i = 1; i < data.length()-1; i++){
+                if(data.charAt(i)!= ','){
+                    word+=data.charAt(i);
+                }
+                else{
+                    if(word.equalsIgnoreCase("true")){
+                        manager.add(true);
+                    }
+                    else{
+                        manager.add(false);
+                    }
+                    
+                    word = "";
+                }
+            }
+
+            if(word.equalsIgnoreCase("true")){
+                        manager.add(true);
+                    }
+                    else{
+                        manager.add(false);
+                    }
+            word = "";
+
+
+
+            
+            myReader.close();
+         } catch (FileNotFoundException e) {
+             System.out.println("An error occurred.");
+             e.printStackTrace();
+         }
+
     }
 
     public void saving(){
@@ -637,18 +917,6 @@ class Employee extends Person{
             }
             myWriter.write("]");
 
-
-            //Write start_date
-            myWriter.write("\n");
-
-            myWriter.write("[");
-            for(int i = 0; i < start_date.size(); i++){
-                if(i!=0){
-                    myWriter.write(",");
-                }
-                myWriter.write(start_date.get(i));
-            }
-            myWriter.write("]");
 
 
             //Write manager

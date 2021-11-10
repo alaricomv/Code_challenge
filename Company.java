@@ -173,13 +173,12 @@ class Company{
             
             for(int i = 1; i < data.length()-1; i++){
                 if(data.charAt(i) == '['){
-                    inside.clear();
+                    inside = new ArrayList<String>();
                 }
                 else if (data.charAt(i) == ']'){
                     inside.add(word);
                     word = "";
                     employees.add(inside);
-                    System.out.println(employees.get(0));
                 }
                 else if (data.charAt(i) == ',') {
                     inside.add(word);
@@ -188,8 +187,6 @@ class Company{
                     word+=data.charAt(i);
                 }
             }
-
-            System.out.println(employees.get(0));
 
 
             

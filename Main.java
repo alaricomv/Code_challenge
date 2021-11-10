@@ -126,6 +126,7 @@ class Main {
                       
                 case 9:
                        company.loading();
+                       employee.loading();
                        break;
 
                 case 10:

@@ -1,4 +1,4 @@
-[oracle]
-[Diana 12]
-[Mexico]
-[[Alarico Mercado,raul]]
+[Oracle,IBM]
+[Diana 145,Kino 124]
+[Mexico,Brazil]
+[[ALarico,Bryan Martinez][Pedro,Bryan Martinez]]
