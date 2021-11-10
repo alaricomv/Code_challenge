@@ -7,8 +7,9 @@ class Main {
 
 
 
-
-        int main_menu;
+        
+        boolean repeat = true;
+        int main_menu = -1;
         boolean exit = false;
         String search; 
         String company_search;
@@ -37,7 +38,20 @@ class Main {
                                + "6) Delete an Employee" + "\n"
                                + "7) Edit an Employee" + "\n"
                                + "8) Exit ");
-            main_menu= myscanner.nextInt();
+            
+            while(repeat){
+                try{
+                    main_menu = myscanner.nextInt();
+                     repeat = false;
+                 } catch(Exception e){
+                    System.out.println("Numbers only");
+                    myscanner.next();
+                    repeat = true;
+                }
+            }
+
+            repeat = true;
+           
 
 
             switch(main_menu){
@@ -99,7 +113,9 @@ class Main {
                        System.out.println("Enter full employee name");
                        myscanner.nextLine();
                        search = myscanner.nextLine();
-                       employee.Editmenu(search);
+                       System.out.println("Enter company name");
+                       company_search = myscanner.nextLine();
+                       employee.Editmenu(search,company_search);
                        break;
 
                 case 8:

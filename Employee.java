@@ -61,6 +61,7 @@ class Employee extends Person{
                 repeat = true;
             }
         }
+        repeat = true;
         
         
         
@@ -94,8 +95,21 @@ class Employee extends Person{
         System.out.println("Enter Project name");
         this.project_one = myscanner.nextLine();
         
-        System.out.println("Enter Salary");
-        this.salary_one = myscanner.nextInt();
+         while(repeat){
+            try{
+                System.out.println("Enter Salary");
+                this.salary_one = myscanner.nextInt();
+                repeat = false;
+            } catch(Exception e){
+                System.out.println("Numbers only");
+                myscanner.next();
+                repeat = true;
+            }
+        }
+        repeat = true;
+
+
+        
         
 
         myscanner.nextLine();
@@ -186,17 +200,19 @@ class Employee extends Person{
     }
 
     //Edit menu
-    public void Editmenu(String search){
+    public void Editmenu(String search, String search_company){
+
+        boolean repeat = true;
 
         Scanner myscanner = new Scanner(System.in);
         boolean exit = false;
         String new_value_str;
         int new_value_int;
-        int main_menu;
+        int main_menu = -1;
 
         int index = -1;
         for(int i = 0; i< name.size();i++){
-            if(name.get(i).equalsIgnoreCase(search)){
+            if(name.get(i).equalsIgnoreCase(search)&& company.get(i).equalsIgnoreCase(search_company)){
                 index = i;
             }
         }
@@ -218,7 +234,18 @@ class Employee extends Person{
                                + "7) Change project" + "\n"
                                + "8) Change Salary" + "\n"
                                + "9) Exit ");
-            main_menu= myscanner.nextInt();
+            while(repeat){
+                try{
+                    main_menu = myscanner.nextInt();
+                     repeat = false;
+                 } catch(Exception e){
+                    System.out.println("Numbers only");
+                    myscanner.next();
+                    repeat = true;
+                }
+            }
+
+            repeat = true;
 
             switch(main_menu){
 
@@ -230,9 +257,20 @@ class Employee extends Person{
                    break;
             
             case 2:
-                   System.out.println("Enter new age");
-                   new_value_int = myscanner.nextInt();
-                   age.set(index, new_value_int);
+                   
+                    while(repeat){
+                        try{
+                             System.out.println("Enter new age");
+                             new_value_int = myscanner.nextInt();
+                             age.set(index, new_value_int);
+                             repeat = false;
+                         } catch(Exception e){
+                             System.out.println("Numbers only");
+                             myscanner.next();
+                             repeat = true;
+                     }
+                   }
+                   repeat = true;
                    break;
             case 3:
                    System.out.println("Enter new number");
@@ -241,9 +279,19 @@ class Employee extends Person{
                    phone.set(index, new_value_str);
                    break;
             case 4:
-                   System.out.println("Hours to add");
-                   new_value_int = myscanner.nextInt();
-                   addhours(new_value_int,search);
+                    while(repeat){
+                        try{
+                             System.out.println("Hours to add");
+                             new_value_int = myscanner.nextInt();
+                             addhours(new_value_int,search);
+                             repeat = false;
+                        } catch(Exception e){
+                              System.out.println("Numbers only");
+                              myscanner.next();
+                              repeat = true;
+                         }
+                     }
+                   repeat = true;
                    break;
             case 5:
                    System.out.println("Enter Manager name");
@@ -279,9 +327,19 @@ class Employee extends Person{
                        break;
                    }
             case 8:
-                   System.out.println("Enter new salary");
-                   new_value_int = myscanner.nextInt();
-                   salary.set(index, new_value_int);
+                    while(repeat){
+                    try{
+                        System.out.println("Enter new salary");
+                         new_value_int = myscanner.nextInt();
+                        salary.set(index, new_value_int);
+                        repeat = false;
+                    } catch(Exception e){
+                        System.out.println("Numbers only");
+                        myscanner.next();
+                        repeat = true;
+                     }
+                    }
+                    repeat = true;
                    break;
             case 9:
                   exit = true;
@@ -302,10 +360,11 @@ class Employee extends Person{
 
     //Project menu for Managers
     public void managingprojects(int index){
+        boolean repeat = true;
         Scanner myscanner = new Scanner(System.in);
         boolean exit = false;
         String new_value_str;
-        int main_menu;
+        int main_menu = -1;
 
 
          while(!exit){
@@ -313,7 +372,19 @@ class Employee extends Person{
                                + "1) New Project " + "\n"
                                + "2) Delete Project" + "\n"
                                + "3) Exit" + "\n");
-            main_menu= myscanner.nextInt();
+
+            while(repeat){
+                try{
+                    main_menu = myscanner.nextInt();
+                     repeat = false;
+                 } catch(Exception e){
+                    System.out.println("Numbers only");
+                    myscanner.next();
+                    repeat = true;
+                }
+            }
+
+            repeat = true;
 
             switch(main_menu){
             case 1:
