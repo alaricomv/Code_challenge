@@ -37,7 +37,8 @@ class Main {
                                + "5) Delete a Company" + "\n"
                                + "6) Delete an Employee" + "\n"
                                + "7) Edit an Employee" + "\n"
-                               + "8) Exit ");
+                               + "8) Save" + "\n"
+                               + "9) Exit ");
             
             while(repeat){
                 try{
@@ -66,7 +67,6 @@ class Main {
 
                         boolean prueba = company.find(company_name);
 
-                        System.out.println(prueba);
 
                         if(company.find(company_name)){
                             Boolean complete = employee.AddEmployee(company_name);
@@ -119,6 +119,12 @@ class Main {
                        break;
 
                 case 8:
+                       employee.saving();
+                       company.saving();
+                       break;
+                      
+
+                case 9:
                         exit = true;
                         break;
 

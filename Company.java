@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.io.IOException;
+import java.io.FileWriter;
 
 class Company{
 
@@ -100,5 +102,77 @@ class Company{
                 System.out.println();
         }
                 
+    }
+
+    public void saving(){
+        try {
+            FileWriter myWriter = new FileWriter("companies.txt");
+            //Saves company names
+            myWriter.write("[");
+            for(int i = 0; i < company_name.size(); i++){
+                if(i!=0){
+                    myWriter.write(",");
+                }
+                myWriter.write(company_name.get(i));
+            }
+            myWriter.write("]");
+
+
+             
+            //Saves company adresses
+            myWriter.write("\n");
+
+            myWriter.write("[");
+            for(int i = 0; i < company_address.size(); i++){
+                if(i!=0){
+                    myWriter.write(",");
+                }
+                myWriter.write(company_address.get(i));
+            }
+            myWriter.write("]");
+
+
+            //Saves country
+
+            myWriter.write("\n");
+
+            myWriter.write("[");
+            for(int i = 0; i < country.size(); i++){
+                if(i!=0){
+                    myWriter.write(",");
+                }
+                myWriter.write(country.get(i));
+            }
+            myWriter.write("]");
+
+
+
+             //Write employees working for the company
+            myWriter.write("\n");
+
+            myWriter.write("[");
+            for(int i = 0; i < employees.size(); i++){
+                myWriter.write("[");
+                for(int j = 0; j < employees.get(i).size();j++){
+                    if(j!=0){
+                    myWriter.write(",");
+                    }
+                    myWriter.write(employees.get(i).get(j));
+                }
+                myWriter.write("]");
+            }
+            myWriter.write("]");
+
+
+            
+
+            
+            myWriter.close();
+            System.out.println("Successfully Saved");
+         } catch (IOException e) {
+            System.out.println("An error occurred.");
+             e.printStackTrace();
+         }
+
     }
 }

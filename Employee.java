@@ -2,6 +2,8 @@ import java.util.Scanner;
 import java.time.format.DateTimeFormatter;  
 import java.time.LocalDateTime;    
 import java.util.ArrayList;
+import java.io.IOException;
+import java.io.FileWriter;
 
 
 class Employee extends Person{
@@ -159,14 +161,11 @@ class Employee extends Person{
         this.boss.add(boss_one);
         this.job.add(job_one);
 
-        if(manager_one == true){
-            ArrayList<String> inside = new ArrayList<String>();
-            inside.add(project_one);
-            this.projects_managers.add(inside);
-        }
-        else{
-            this.project.add(project_one);
-        }
+
+        ArrayList<String> inside = new ArrayList<String>();
+        inside.add(project_one);
+        this.projects_managers.add(inside);
+        
         
         this.salary.add(salary_one);
 
@@ -316,16 +315,8 @@ class Employee extends Person{
                    job.set(index, new_value_str);
                    break;
             case 7:
-                   if(manager.get(index)== false){
-                       myscanner.nextLine();
-                       new_value_str = myscanner.nextLine();
-                       job.set(index, new_value_str);
-                       break;
-                   }
-                   else{
-                       managingprojects(index);
-                       break;
-                   }
+                    managingprojects(index);
+                    break;
             case 8:
                     while(repeat){
                     try{
@@ -527,7 +518,7 @@ class Employee extends Person{
                 + "Manager: " +manager.get(index)+ "\n"
                 + "Projects: ");
 
-                if(manager.get(index)){
+                
                 for (int i = 0; i < projects_managers.size(); i++) {
                     for(int j = 0; j < projects_managers.get(i).size(); j++){
                         if(i == index){
@@ -536,11 +527,215 @@ class Employee extends Person{
                         
                     }
                 }
+                
+        }
+    }
+
+    public void saving(){
+        try {
+            FileWriter myWriter = new FileWriter("employees.txt");
+            //Saves names
+            myWriter.write("[");
+            for(int i = 0; i < name.size(); i++){
+                if(i!=0){
+                    myWriter.write(",");
+                }
+                myWriter.write(name.get(i));
+            }
+            myWriter.write("]");
+
+
+             
+            //Saves company
+            myWriter.write("\n");
+
+            myWriter.write("[");
+            for(int i = 0; i < company.size(); i++){
+                if(i!=0){
+                    myWriter.write(",");
+                }
+                myWriter.write(company.get(i));
+            }
+            myWriter.write("]");
+
+
+            //Saves address
+
+            myWriter.write("\n");
+
+            myWriter.write("[");
+            for(int i = 0; i < address.size(); i++){
+                if(i!=0){
+                    myWriter.write(",");
+                }
+                myWriter.write(address.get(i));
+            }
+            myWriter.write("]");
+
+
+            //Saves age
+            myWriter.write("\n");
+
+            myWriter.write("[");
+            for(int i = 0; i < age.size(); i++){
+                if(i!=0){
+                    myWriter.write(",");
+                }
+                myWriter.write(Integer.toString(age.get(i)));
+            }
+            myWriter.write("]");
+
+
+            //Write phone
+            myWriter.write("\n");
+
+            myWriter.write("[");
+            for(int i = 0; i < phone.size(); i++){
+                if(i!=0){
+                    myWriter.write(",");
+                }
+                myWriter.write(phone.get(i));
+            }
+            myWriter.write("]");
+
+            
+            //Write start_date
+            myWriter.write("\n");
+
+            myWriter.write("[");
+            for(int i = 0; i < start_date.size(); i++){
+                if(i!=0){
+                    myWriter.write(",");
+                }
+                myWriter.write(start_date.get(i));
+            }
+            myWriter.write("]");
+
+
+            //Saves full time counter
+            myWriter.write("\n");
+
+            myWriter.write("[");
+            for(int i = 0; i < full.size(); i++){
+                if(i!=0){
+                    myWriter.write(",");
+                }
+                myWriter.write(Integer.toString(full.get(i)));
+            }
+            myWriter.write("]");
+
+            
+            //Saves work hours
+            myWriter.write("\n");
+
+            myWriter.write("[");
+            for(int i = 0; i < hours.size(); i++){
+                if(i!=0){
+                    myWriter.write(",");
+                }
+                myWriter.write(Integer.toString(hours.get(i)));
+            }
+            myWriter.write("]");
+
+
+            //Write start_date
+            myWriter.write("\n");
+
+            myWriter.write("[");
+            for(int i = 0; i < start_date.size(); i++){
+                if(i!=0){
+                    myWriter.write(",");
+                }
+                myWriter.write(start_date.get(i));
+            }
+            myWriter.write("]");
+
+
+            //Write manager
+            myWriter.write("\n");
+
+            myWriter.write("[");
+            for(int i = 0; i < boss.size(); i++){
+                if(i!=0){
+                    myWriter.write(",");
+                }
+                myWriter.write(boss.get(i));
+            }
+            myWriter.write("]");
+
+             //Write job
+            myWriter.write("\n");
+
+            myWriter.write("[");
+            for(int i = 0; i < job.size(); i++){
+                if(i!=0){
+                    myWriter.write(",");
+                }
+                myWriter.write(job.get(i));
+            }
+            myWriter.write("]");
+
+
+
+             //Write project
+            myWriter.write("\n");
+
+            myWriter.write("[");
+            for(int i = 0; i < projects_managers.size(); i++){
+                myWriter.write("[");
+                for(int j = 0; j < projects_managers.get(i).size();j++){
+                    if(j!=0){
+                    myWriter.write(",");
+                    }
+                    myWriter.write(projects_managers.get(i).get(j));
+                }
+                myWriter.write("]");
+            }
+            myWriter.write("]");
+
+
+
+             //Saves salary
+            myWriter.write("\n");
+
+            myWriter.write("[");
+            for(int i = 0; i < salary.size(); i++){
+                if(i!=0){
+                    myWriter.write(",");
+                }
+                myWriter.write(Integer.toString(salary.get(i)));
+            }
+            myWriter.write("]");
+
+
+
+             //Saves If the person is a manager
+            myWriter.write("\n");
+
+            myWriter.write("[");
+            for(int i = 0; i < manager.size(); i++){
+                if(i!=0){
+                    myWriter.write(",");
+                }
+                if(manager.get(i) == true){
+                    myWriter.write("true");
                 }
                 else{
-                    System.out.println("Project: " +project.get(index));
+                    myWriter.write("false");
                 }
-        }
+            }
+            myWriter.write("]");
+
+            
+
+            
+            myWriter.close();
+            System.out.println("Successfully Saved");
+         } catch (IOException e) {
+            System.out.println("An error occurred.");
+             e.printStackTrace();
+         }
+
     }
 
 
