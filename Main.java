@@ -32,7 +32,11 @@ class Main {
                                + "2) Add employee" + "\n"
                                + "3) Search an employee" + "\n"
                                + "4) Search a Company" + "\n"
-                               + "5) Exit ");
+                               + "5) Delete a Company" + "\n"
+                               + "6) Delete an Employee" + "\n"
+                               + "7) Edit a Company" + "\n"
+                               + "8) Edit an Employee" + "\n"
+                               + "9) Exit ");
             main_menu= myscanner.nextInt();
 
 
@@ -74,8 +78,23 @@ class Main {
                        search = myscanner.nextLine();
                        company.Company_info(search);
                        break;
-
                 case 5:
+                       System.out.println("Enter Company name");
+                       myscanner.nextLine();
+                       search = myscanner.nextLine();
+                       company.Deletecompany(search);
+                       break;
+                case 6:
+                       System.out.println("Enter full employee name");
+                       myscanner.nextLine();
+                       search = myscanner.nextLine();
+                       System.out.println("Enter company name");
+                       company_search = myscanner.nextLine();
+                       employee.Deleteemployee(search,company_search);
+                       
+                       break;
+
+                case 9:
                         exit = true;
                         break;
 

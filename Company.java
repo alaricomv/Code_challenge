@@ -23,6 +23,7 @@ class Company{
         this.employees.add(inside);
     }
 
+    //Adds employees to company
     public void AddEmployees(String company_find, String employee_name){
         int index = -1;
         for(int i = 0; i< company_name.size();i++){
@@ -31,6 +32,28 @@ class Company{
             }
         }
         employees.get(index).add(employee_name);
+    }
+
+    //Delete a company by name
+    public void Deletecompany(String company_find){
+        int index = -1;
+        for(int i = 0; i< company_name.size();i++){
+            if(company_name.get(i).equalsIgnoreCase(company_find)){
+                index = i;
+            }
+        }
+
+        if(index != -1){
+            company_name.remove(index);
+            company_address.remove(index);
+            country.remove(index);
+            employees.remove(index);
+            System.out.println("Company deleted");
+        }
+        else{
+            System.out.println("Company not found");
+        }
+        
     }
 
     //Finds if the company is registered

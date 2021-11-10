@@ -12,9 +12,12 @@ class Employee extends Person{
     public ArrayList<String> boss = new ArrayList<String>();
     public ArrayList<String> job = new ArrayList<String>();
     public ArrayList<String> project = new ArrayList<String>();
+    public ArrayList<ArrayList<String>> projects_managers = new ArrayList<ArrayList<String>>();
     public ArrayList<String> company = new ArrayList<String>();
     public ArrayList<Integer> salary = new ArrayList<Integer>();
     public ArrayList<Boolean> manager = new ArrayList<Boolean>();
+
+    public boolean first_manager = true;
 
     public String start_date_one;
     public int full_one;
@@ -34,8 +37,8 @@ class Employee extends Person{
 
 
     public void AddEmployee(String company_name){
-        Scanner myscanner = new Scanner(System.in);
 
+        Scanner myscanner = new Scanner(System.in);
         
         
         this.company.add(company_name);
@@ -53,12 +56,25 @@ class Employee extends Person{
         
 
         
-
-        System.out.println("Enter Manager name");
-        this.boss_one = myscanner.nextLine();
+        if(first_manager == false){
+            System.out.println("Enter Manager name");
+            this.boss_one = myscanner.nextLine();
+            if(Managerexists(boss_one)){
+            }
+            else{
+                System.out.println("Manager not found");
+                return;
+            }
+        }
+        else{
+            this.boss_one = "CEO";
+        }
+        
         
         System.out.println("Enter Job Position");
         this.job_one = myscanner.nextLine();
+        
+
         
         System.out.println("Enter Project name");
         this.project_one = myscanner.nextLine();
@@ -90,12 +106,22 @@ class Employee extends Person{
             
         }
 
-        System.out.println("Is the employee a manager? Y/N");
-        if(myscanner.nextLine().equalsIgnoreCase("Y")){
-            this.manager.add(true);
+
+        if(first_manager == false){
+            System.out.println("Is the employee a manager? Y/N");
+            if(myscanner.nextLine().equalsIgnoreCase("Y")){
+                manager_one = true;
+                this.manager.add(true);
+            }
+            else{
+                manager_one = false;
+                this.manager.add(false);
+            }
         }
         else{
-            this.manager.add(false);
+            manager_one = true;
+            this.manager.add(true);
+            first_manager = false;
         }
 
 
@@ -103,7 +129,16 @@ class Employee extends Person{
 
         this.boss.add(boss_one);
         this.job.add(job_one);
-        this.project.add(project_one);
+
+        if(manager_one == true){
+            ArrayList<String> inside = new ArrayList<String>();
+            inside.add(project_one);
+            this.projects_managers.add(inside);
+        }
+        else{
+            this.project.add(project_one);
+        }
+        
         this.salary.add(salary_one);
 
 
@@ -149,6 +184,21 @@ class Employee extends Person{
         }
     }
 
+    public boolean Managerexists(String name_manager){
+        int index = -1;
+        for(int i = 0; i< name.size();i++){
+            if(name.get(i).equalsIgnoreCase(name_manager) && manager.get(i) == true){
+                index = i;
+            }
+        }
+        if(index == -1){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+
     //Find out if the employee can have a half time job
     public boolean counthourshalf(String name_count){
         int index = -1;
@@ -169,6 +219,37 @@ class Employee extends Person{
             else{
                 return false;
             } 
+        }
+    }
+
+    public void Deleteemployee(String search, String company_search){
+
+        int index = -1;
+        for(int i = 0; i< name.size();i++){
+            if(name.get(i).equalsIgnoreCase(search) && company.get(i).equalsIgnoreCase(company_search)){
+                index = i;
+            }
+        }
+
+        if(index == -1){
+            System.out.println("User not found");
+        }
+        else{
+            name.remove(index);
+            address.remove(index);
+            age.remove(index);
+            phone.remove(index);
+            start_date.remove(index);
+            full.remove(index);
+            hours.remove(index);
+            boss.remove(index);
+            job.remove(index);
+            project.remove(index);
+            company.remove(index);
+            salary.remove(index);
+            manager.remove(index);
+
+            System.out.println("User deleted");
         }
     }
 
@@ -195,9 +276,26 @@ class Employee extends Person{
                 + "Total Hours: " +hours.get(index)+ "\n"
                 + "Boss: " +boss.get(index) + "\n" 
                 + "Job: " +job.get(index) + "\n"
-                + "Project: " + project.get(index) + "\n"
-                + "Salary: " +salary.get(index)+ "\n");
+                + "Salary: " +salary.get(index)+ "\n"
+                + "Manager: " +manager.get(index)+ "\n"
+                + "Projects: ");
+
+                if(manager.get(index)){
+                for (int i = 0; i < projects_managers.size(); i++) {
+                    for(int j = 0; j < projects_managers.get(i).size(); j++){
+                        if(i == index){
+                            System.out.println((projects_managers.get(i)).get(j));
+                        }
+                        
+                    }
+                }
+                }
+                else{
+                    System.out.println("Project: " +project.get(index));
+                }
         }
     }
+
+
 
 }
