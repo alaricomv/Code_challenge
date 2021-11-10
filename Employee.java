@@ -36,7 +36,7 @@ class Employee extends Person{
 
 
 
-    public void AddEmployee(String company_name){
+    public Boolean AddEmployee(String company_name){
 
         Scanner myscanner = new Scanner(System.in);
         
@@ -63,7 +63,7 @@ class Employee extends Person{
             }
             else{
                 System.out.println("Manager not found");
-                return;
+                return false;
             }
         }
         else{
@@ -91,7 +91,7 @@ class Employee extends Person{
             }
             else{
                 System.out.println("Cannot apply to this position");
-                return;
+                return false;
             }
             
         }
@@ -101,7 +101,7 @@ class Employee extends Person{
             }
             else{
                 System.out.println("Cannot apply to this position");
-                return;
+                return false;
             }
             
         }
@@ -124,7 +124,7 @@ class Employee extends Person{
             first_manager = false;
         }
 
-
+        //Passes all the filters and adds to table the employee
         CreatePerson(name_enter,address_enter,age_enter,phone_enter);
 
         this.boss.add(boss_one);
@@ -148,6 +148,8 @@ class Employee extends Person{
         LocalDateTime now = LocalDateTime.now();  
         this.start_date.add(dtf.format(now));
         this.hours.add(0);
+
+        return true;
     }
 
     //Adding work hours
@@ -184,6 +186,7 @@ class Employee extends Person{
         }
     }
 
+    //Checks if the manager in question exists and if they are actually a manager
     public boolean Managerexists(String name_manager){
         int index = -1;
         for(int i = 0; i< name.size();i++){

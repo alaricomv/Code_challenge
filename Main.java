@@ -55,8 +55,10 @@ class Main {
                         System.out.println(prueba);
 
                         if(company.find(company_name)){
-                            employee.AddEmployee(company_name);
-                            company.AddEmployees(company_name,employee.name_enter);
+                            Boolean complete = employee.AddEmployee(company_name);
+                            if(complete == true){
+                                company.AddEmployees(company_name,employee.name_enter);
+                            }
                         }
                         else{
                             System.out.println("Company not found");
