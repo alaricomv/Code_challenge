@@ -38,7 +38,8 @@ class Main {
                                + "6) Delete an Employee" + "\n"
                                + "7) Edit an Employee" + "\n"
                                + "8) Save" + "\n"
-                               + "9) Exit ");
+                               + "9) Load" + "\n"
+                               + "10) Exit ");
             
             while(repeat){
                 try{
@@ -123,13 +124,17 @@ class Main {
                        company.saving();
                        break;
                       
-
                 case 9:
+                       company.loading();
+                       break;
+
+                case 10:
                         exit = true;
                         break;
 
                 default:
                         System.out.println("Choose a valid option");
+                        break;
 
             }
         }

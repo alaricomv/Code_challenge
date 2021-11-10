@@ -1,4 +1,4 @@
-[Oracle]
-[Diana 134]
+[oracle]
+[Diana 12]
 [Mexico]
-[[Alarico Mercado]]
+[[Alarico Mercado,raul]]

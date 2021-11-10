@@ -2,6 +2,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.IOException;
 import java.io.FileWriter;
+import java.io.File;
+import java.io.FileNotFoundException; 
 
 class Company{
 
@@ -90,6 +92,7 @@ class Company{
                 + "Employees: ");
 
 
+
                 for (int i = 0; i < employees.size(); i++) {
                     for(int j = 0; j < employees.get(i).size(); j++){
                         if(i == index){
@@ -102,6 +105,100 @@ class Company{
                 System.out.println();
         }
                 
+    }
+
+    public void loading(){
+         try {
+            File myObj = new File("companies.txt");
+            Scanner myReader = new Scanner(myObj);
+            String word = "";
+            
+
+            //Loads company names
+            company_name.clear();
+            String data = myReader.nextLine();
+            for(int i = 1; i < data.length()-1; i++){
+                if(data.charAt(i)!= ','){
+                    word+=data.charAt(i);
+                }
+                else{
+                    company_name.add(word);
+                    word = "";
+                }
+            }
+
+            company_name.add(word);
+            word = "";
+
+
+
+            //Loads company address
+            company_address.clear();
+            data = myReader.nextLine();
+            for(int i = 1; i < data.length()-1; i++){
+                if(data.charAt(i)!= ','){
+                    word+=data.charAt(i);
+                }
+                else{
+                    company_address.add(word);
+                    word = "";
+                }
+            }
+
+            company_address.add(word);
+            word = "";
+
+
+            //Loads company country
+            country.clear();
+            data = myReader.nextLine();
+            for(int i = 1; i < data.length()-1; i++){
+                if(data.charAt(i)!= ','){
+                    word+=data.charAt(i);
+                }
+                else{
+                    country.add(word);
+                    word = "";
+                }
+            }
+
+            country.add(word);
+            word = "";
+
+
+            //Loads employees
+            ArrayList<String> inside = new ArrayList<String>();
+            employees.clear();
+            data = myReader.nextLine();
+            
+            for(int i = 1; i < data.length()-1; i++){
+                if(data.charAt(i) == '['){
+                    inside.clear();
+                }
+                else if (data.charAt(i) == ']'){
+                    inside.add(word);
+                    word = "";
+                    employees.add(inside);
+                    System.out.println(employees.get(0));
+                }
+                else if (data.charAt(i) == ',') {
+                    inside.add(word);
+                    word = "";
+                }else{
+                    word+=data.charAt(i);
+                }
+            }
+
+            System.out.println(employees.get(0));
+
+
+            
+            myReader.close();
+         } catch (FileNotFoundException e) {
+             System.out.println("An error occurred.");
+             e.printStackTrace();
+         }
+
     }
 
     public void saving(){
