@@ -29,6 +29,7 @@ class Employee extends Person{
     public int salary_one;
     public boolean manager_one;
     public String name_enter;
+    public int age_enter;
 
     public Employee(){
        
@@ -37,6 +38,7 @@ class Employee extends Person{
 
 
     public Boolean AddEmployee(String company_name){
+        boolean repeat = true;
 
         Scanner myscanner = new Scanner(System.in);
         
@@ -47,8 +49,21 @@ class Employee extends Person{
         name_enter = myscanner.nextLine();
         System.out.println("Enter Address");
         String address_enter = myscanner.nextLine();
-        System.out.println("Enter Age");
-        int age_enter = myscanner.nextInt();
+
+        while(repeat){
+            try{
+                System.out.println("Enter Age");
+                age_enter = myscanner.nextInt();
+                repeat = false;
+            } catch(Exception e){
+                System.out.println("Numbers only");
+                myscanner.next();
+                repeat = true;
+            }
+        }
+        
+        
+        
         System.out.println("Enter Phone");
         myscanner.nextLine();
         String phone_enter = myscanner.nextLine();
@@ -235,7 +250,7 @@ class Employee extends Person{
                     myscanner.nextLine();
                     new_value_str = myscanner.nextLine();
                     if(manager.get(index)){
-                        System.out.println("Manager of manager is the CEO")
+                        System.out.println("Manager of manager is the CEO");
                         break;
                     }
                     if(Managerexists(new_value_str)){
@@ -314,7 +329,7 @@ class Employee extends Person{
                    for (int i = 0; i < projects_managers.size(); i++) {
                         for(int j = 0; j < projects_managers.get(i).size(); j++){
                             if(i == index && projects_managers.get(i).get(j).equalsIgnoreCase(new_value_str)){
-                                projects_managers.get(i)).remove(j);
+                                projects_managers.get(i).remove(j);
                             }
                         
                          }
