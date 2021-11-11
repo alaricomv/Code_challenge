@@ -46,7 +46,7 @@ class Main {
 
 
 
-        logr.fine("Empezamos");
+        logr.fine("Start of the program");
 
         while(!exit){
             System.out.println("Choose action" + "\n" 
@@ -80,11 +80,11 @@ class Main {
                 case 1:
                         try{
                             company.AddCompany();
+                            logr.fine("Added company correctly");
                         }catch(Exception ex){
                             logr.warning("Error while adding company");
                         }
                         
-                        logr.fine("Added company correctly");
                         break;
                 case 2:
                         //Verifies that the company exists before entering an employee
@@ -100,6 +100,9 @@ class Main {
                             if(complete == true){
                                 company.AddEmployees(company_name,employee.name_enter);
                             }
+                            else{
+                                logr.info("Failed to create an employee correctly");
+                            }
                         }
                         else{
                             System.out.println("Company not found");
@@ -112,20 +115,36 @@ class Main {
                        search = myscanner.nextLine();
                        System.out.println("Enter company name");
                        company_search = myscanner.nextLine();
-                       employee.info(search,company_search);
+                       try{
+                            employee.info(search,company_search);
+                            logr.fine("Employee search complete");
+                        }catch(Exception ex){
+                            logr.warning("Error while searching");
+                        }
                        break;
 
                 case 4:
                        System.out.println("Enter Company name");
                        myscanner.nextLine();
                        search = myscanner.nextLine();
+                       try{
+                            company.Company_info(search);
+                            logr.fine("Company search complete");
+                        }catch(Exception ex){
+                            logr.warning("Error while searching");
+                        }
                        company.Company_info(search);
                        break;
                 case 5:
                        System.out.println("Enter Company name");
                        myscanner.nextLine();
                        search = myscanner.nextLine();
-                       company.Deletecompany(search);
+                       try{
+                            company.Deletecompany(search);
+                            logr.fine("Company deleted correctly");
+                        }catch(Exception ex){
+                            logr.warning("Error while deleting");
+                        }
                        break;
                 case 6:
                        System.out.println("Enter full employee name");
@@ -133,7 +152,12 @@ class Main {
                        search = myscanner.nextLine();
                        System.out.println("Enter company name");
                        company_search = myscanner.nextLine();
-                       employee.Deleteemployee(search,company_search);
+                       try{
+                            employee.Deleteemployee(search,company_search);
+                            logr.fine("Employee deleted correctly");
+                        }catch(Exception ex){
+                            logr.warning("Error while deleting");
+                        }
                        
                        break;
                 case 7:
@@ -142,18 +166,33 @@ class Main {
                        search = myscanner.nextLine();
                        System.out.println("Enter company name");
                        company_search = myscanner.nextLine();
-                       employee.Editmenu(search,company_search);
+                       
+                       try{
+                            employee.Editmenu(search,company_search);
+                            logr.fine("Employee edited correctly");
+                        }catch(Exception ex){
+                            logr.warning("Error while editing");
+                        }
                        break;
 
                 case 8:
-                       employee.saving();
-                       company.saving();
-                       break;
-                      
+                        try{
+                            employee.saving();
+                            company.saving();
+                            logr.fine("Saved correctly");
+                        }catch(Exception ex){
+                            logr.warning("Couldnt save");
+                        }
+                        break;
                 case 9:
-                       company.loading();
-                       employee.loading();
-                       break;
+                       try{
+                            employee.loading();
+                            company.loading();
+                            logr.fine("Loaded correctly");
+                        }catch(Exception ex){
+                            logr.warning("Couldnt load");
+                        }
+                        break;
 
                 case 10:
                         exit = true;
@@ -161,10 +200,12 @@ class Main {
 
                 default:
                         System.out.println("Choose a valid option");
+                        logr.info("The user did not choose a valid option");
                         break;
 
             }
         }
+         logr.finer("End of the program");
 
        
     }

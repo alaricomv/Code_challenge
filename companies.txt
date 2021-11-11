@@ -1,4 +1,4 @@
 [Oracle,IBM]
-[Diana 145,Kino 124]
+[Guadiana 1334,Perula 2345]
 [Mexico,Brazil]
-[[ALarico,Bryan Martinez][Pedro,Bryan Martinez]]
+[[Alarico Mercado Vazquez,Mariano Ortega][Pedro Martinez Rodal]]
