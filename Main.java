@@ -3,9 +3,32 @@ import java.util.ArrayList;
 import java.util.logging.*;
 
 class Main {
+    private static Logger logr = Logger.getLogger( Logger.GLOBAL_LOGGER_NAME);
+    
+    //Logger configuration
+    public static void setupLogger(){
+        LogManager.getLogManager().reset();
+        logr.setLevel(Level.ALL);
+
+        ConsoleHandler ch = new ConsoleHandler();
+        ch.setLevel(Level.SEVERE);
+        logr.addHandler(ch);
+        
+        try{
+            FileHandler fh = new FileHandler("myLogger.log");
+            fh.setLevel(Level.FINE);
+            logr.addHandler(fh);
+        }catch(java.io.IOException e){
+            logr.log(Level.SEVERE, "File not working", e);
+        }
+
+
+    }
+    
+
     public static void main(String[] args) {
 
-
+        Main.setupLogger();
 
         
         boolean repeat = true;
@@ -23,10 +46,7 @@ class Main {
 
 
 
-        ArrayList<String> names = new ArrayList<>();
-
-        names.add("Alarico Mercado");
-        names.add("Fernanda Montiel");
+        logr.fine("Empezamos");
 
         while(!exit){
             System.out.println("Choose action" + "\n" 
@@ -58,7 +78,13 @@ class Main {
 
             switch(main_menu){
                 case 1:
-                        company.AddCompany();
+                        try{
+                            company.AddCompany();
+                        }catch(Exception ex){
+                            logr.warning("Error while adding company");
+                        }
+                        
+                        logr.fine("Added company correctly");
                         break;
                 case 2:
                         //Verifies that the company exists before entering an employee

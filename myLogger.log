@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2021-11-11T00:25:59.117936600Z</date>
+  <millis>1636590359117</millis>
+  <nanos>936600</nanos>
+  <sequence>0</sequence>
+  <logger>global</logger>
+  <level>FINE</level>
+  <class>Main</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>Empezamos</message>
+</record>
+<record>
+  <date>2021-11-11T00:26:11.084438300Z</date>
+  <millis>1636590371084</millis>
+  <nanos>438300</nanos>
+  <sequence>1</sequence>
+  <logger>global</logger>
+  <level>FINE</level>
+  <class>Main</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>Added company correctly</message>
+</record>
