@@ -73,6 +73,22 @@ class Company{
 
     }
 
+    public void deleteEmployees(String search_employee, String search_company){
+        int index = -1;
+        for(int i = 0; i< company_name.size();i++){
+            if(company_name.get(i).equalsIgnoreCase(search_company)){
+                index = i;
+            }
+        }
+        
+        for(int i = 0; i < employees.get(index).size();i++){
+            if(employees.get(index).get(i).equalsIgnoreCase(search_employee)){
+                employees.get(index).remove(i);
+            }
+        }
+
+    }
+
     //Finds the info of an specific company
     public void Company_info(String search){
         int index = -1;

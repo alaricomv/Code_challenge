@@ -484,7 +484,7 @@ class Employee extends Person{
         }
     }
 
-    public void Deleteemployee(String search, String company_search){
+    public boolean Deleteemployee(String search, String company_search){
 
         int index = -1;
         for(int i = 0; i< name.size();i++){
@@ -495,8 +495,10 @@ class Employee extends Person{
 
         if(index == -1){
             System.out.println("User not found");
+            return false;
         }
         else{
+            
             name.remove(index);
             address.remove(index);
             age.remove(index);
@@ -506,12 +508,13 @@ class Employee extends Person{
             hours.remove(index);
             boss.remove(index);
             job.remove(index);
-            project.remove(index);
+            projects_managers.remove(index);
             company.remove(index);
             salary.remove(index);
             manager.remove(index);
 
             System.out.println("User deleted");
+            return true;
         }
     }
 

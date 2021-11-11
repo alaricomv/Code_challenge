@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2021-11-11T01:07:07.529818700Z</date>
+  <millis>1636592827529</millis>
+  <nanos>818700</nanos>
+  <sequence>0</sequence>
+  <logger>global</logger>
+  <level>FINE</level>
+  <class>Main</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>Start of the program</message>
+</record>
+<record>
+  <date>2021-11-11T01:07:09.034132200Z</date>
+  <millis>1636592829034</millis>
+  <nanos>132200</nanos>
+  <sequence>1</sequence>
+  <logger>global</logger>
+  <level>FINE</level>
+  <class>Main</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>Loaded correctly</message>
+</record>
+<record>
+  <date>2021-11-11T01:07:15.978309800Z</date>
+  <millis>1636592835978</millis>
+  <nanos>309800</nanos>
+  <sequence>2</sequence>
+  <logger>global</logger>
+  <level>FINE</level>
+  <class>Main</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>Employee deleted correctly</message>
+</record>
+<record>
+  <date>2021-11-11T01:07:31.069312800Z</date>
+  <millis>1636592851069</millis>
+  <nanos>312800</nanos>
+  <sequence>3</sequence>
+  <logger>global</logger>
+  <level>FINE</level>
+  <class>Main</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>Company search complete</message>
+</record>
+</log>

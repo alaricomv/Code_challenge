@@ -153,8 +153,10 @@ class Main {
                        System.out.println("Enter company name");
                        company_search = myscanner.nextLine();
                        try{
-                            employee.Deleteemployee(search,company_search);
-                            logr.fine("Employee deleted correctly");
+                            if(employee.Deleteemployee(search,company_search) == true){
+                                company.deleteEmployees(search,company_search);
+                                logr.fine("Employee deleted correctly");
+                            }
                         }catch(Exception ex){
                             logr.warning("Error while deleting");
                         }
